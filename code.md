@@ -79,8 +79,25 @@ public int minDepth(TreeNode root) {
 
 > 他用动态规划背包问题，10行顶我至少30+代码。。  不过他只是判断是否能将字符串全都分割，即判断布尔值，而没有存放到ArrayList队列里。即便这样，他用了substring动态地去比较哪个范围的值的是否相等，好过我的split。而且他用一个一维数组来记录能否划分，其实是动态思想来记录解决了我停在了后面还有可能性的
 地方。
-
 ```java
+只判断
+public boolean wordBreak(String s, Set<String> dict) {
+        //动态规划 一次遍历 记录到最后
+        int n=s.length();
+        boolean[] res=new boolean[n+1];
+        res[0]=true;
+        for(int i=1;i<=n;i++)//把s当做背包？
+            for(String word : dict){
+                int len=word.length();
+                if(len<=i && word.equals(s.substring(i-len,i))){//len<= 把一些可能的小分子计算在内了
+                    res[i]=res[i]||res[i-len];//这也限制了是否第一个单词前面有无剩余
+                }
+            }
+        return res[n];
+    }
+```
+```java
+不止判断
  public ArrayList<String> wordBreak(String s, Set<String> dict) {
         //42分钟
         //递归思想+遍历字典，每个可行的字典单词就有机会进入递归
@@ -108,4 +125,4 @@ public int minDepth(TreeNode root) {
         return res;
         
     }
-    ```
+ ```
