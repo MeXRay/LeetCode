@@ -80,3 +80,32 @@ public int minDepth(TreeNode root) {
 > 他用动态规划背包问题，10行顶我至少30+代码。。  不过他只是判断是否能将字符串全都分割，即判断布尔值，而没有存放到ArrayList队列里。即便这样，他用了substring动态地去比较哪个范围的值的是否相等，好过我的split。而且他用一个一维数组来记录能否划分，其实是动态思想来记录解决了我停在了后面还有可能性的
 地方。
 
+```java
+ public ArrayList<String> wordBreak(String s, Set<String> dict) {
+        //42分钟
+        //递归思想+遍历字典，每个可行的字典单词就有机会进入递归
+        //还用了Map来记录，增加复用率
+        Map<String,ArrayList<String>> map =new HashMap<>();
+        return add(s,dict,map);
+    }
+    public ArrayList<String> add(String s,Set<String> dict,Map<String,ArrayList<String>> map){
+        //利用s.startsWith来判断开头，之后s.substring(单词长度)来进入递归
+        //它在每次递归都新建了一个ArrayList,其实无可避免，只要记住最简单模型，其余的消耗都是必须的
+        if(map.containsKey(s)) return map.get(s);
+        ArrayList<String> res=new ArrayList<>();
+        if("".equals(s)){
+            res.add("");
+            return res;
+        }
+        for(String word : dict){
+            if(s.startsWith(word)){
+                for(String str:add(s.substring(word.length()),dict,map))
+                    //其实每次只有一个str吧
+                    res.add(word+(str==""?"":" ")+str);
+            }
+        }
+        map.put(s,res);//而不是word,word，他解决的是catsanddoganddog,后面的anddog直接拿
+        return res;
+        
+    }
+    ```
