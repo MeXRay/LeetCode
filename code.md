@@ -40,6 +40,39 @@ public int minDepth(TreeNode root) {
 
 > 他的思想和我差不多，但是不用复制，它拆分反转直接把我的复制浪费的空间和一半得停止的额外计算给完成了
 
+'''java
+ public void reorderList(ListNode head) {
+        if(head == null || head.next==null) return;
+        ListNode fast,slow;
+        fast=slow=head;
+        while(fast.next!=null&&fast.next.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        //拆分
+        ListNode after=slow.next;
+        slow.next=null;
+        //后半部分反转 前插法
+        ListNode nhead=null;
+        while(after!=null){
+            ListNode next=after.next;
+            after.next=nhead;
+            nhead=after;
+            after=next;
+        }
+        //相隔插入
+        ListNode pre=head;
+        while(nhead!=null){
+            ListNode anext=nhead.next;
+            ListNode fnext=pre.next;
+            pre.next=nhead;
+            nhead.next=fnext;
+            pre=fnext;
+            nhead=anext;
+        }
+    }
+    '''
+
 # 4.word-break
 > 根据字典单词去用空格划分出所有可能。  我采用了split，但因为string的不可变性，我用了StringBuilder,想到了可以让不同字典里的单词做词首，但没去实现
 回溯以便于不会后面还有另一种可能但是停在前面了。
