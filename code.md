@@ -40,7 +40,7 @@ public int minDepth(TreeNode root) {
 
 > 他的思想和我差不多，但是不用复制，它拆分反转直接把我的复制浪费的空间和一半得停止的额外计算给完成了
 
-'''java
+```java
  public void reorderList(ListNode head) {
         if(head == null || head.next==null) return;
         ListNode fast,slow;
@@ -71,7 +71,7 @@ public int minDepth(TreeNode root) {
             nhead=anext;
         }
     }
-    '''
+   ```
 
 # 4.word-break
 > 根据字典单词去用空格划分出所有可能。  我采用了split，但因为string的不可变性，我用了StringBuilder,想到了可以让不同字典里的单词做词首，但没去实现
