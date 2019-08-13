@@ -1,4 +1,4 @@
-- [二叉树的最小深度](#二叉树的最小深度)
+[1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
 
 # 1.minimum-depth-of-binary-tree
 要求：二叉树的最小深度，有叶子结点的话不能认为根节点是最短路径
