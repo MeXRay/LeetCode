@@ -1,10 +1,10 @@
-[1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
-[2.binary-tree-postorder-traversal](#2.binary-tree-postorder-traversal)
-[3.reorder-list](#3.reorder-list)
-[4.word-break](#4.word-break)
-[5.single-number-ii](#5.single-number-ii)
-[1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
-[1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
+- [1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
+- [2.binary-tree-postorder-traversal](#2.binary-tree-postorder-traversal)
+- [3.reorder-list](#3.reorder-list)
+- [4.word-break](#4.word-break)
+- [5.single-number-ii](#5.single-number-ii)
+- [1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
+- [1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
 
 # 1.minimum-depth-of-binary-tree
 要求：二叉树的最小深度，有叶子结点的话不能认为根节点是最短路径
