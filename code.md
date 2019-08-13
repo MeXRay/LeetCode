@@ -1,4 +1,10 @@
 [1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
+[2.binary-tree-postorder-traversal](#2.binary-tree-postorder-traversal)
+[3.reorder-list](#3.reorder-list)
+[4.word-break](#4.word-break)
+[5.single-number-ii](#5.single-number-ii)
+[1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
+[1.minimum-depth-of-binary-tree](#1.minimum-depth-of-binary-tree)
 
 # 1.minimum-depth-of-binary-tree
 要求：二叉树的最小深度，有叶子结点的话不能认为根节点是最短路径
@@ -129,4 +135,24 @@ public boolean wordBreak(String s, Set<String> dict) {
     }
  ```
 # 5.single-number-ii
-//最多出现3次，找出只出现一次的
+最多出现3次，找出只出现一次的  一道位运算的极致的题
+```java
+  //异或一个人解决不了，叫上了与、或帮忙
+      //思路说是模拟计数3进位，但在我看来是用ones,twos,threes来吸收符合条件的数
+      //吸收指的是1,2都出现了两次，那么twos是3，里面包括了1和2
+      int ones=0;
+      int twos=0;
+      int threes;
+        for(int i=0;i<A.length;i++){
+            int t = A[i];//这是等待被垃圾分类1,2,3的数
+            //出现两次的条件是之前出现过一次也就是ones和这次的t
+            //与 会加上t或者0，与就是保持自己或者0的符号
+            //或是兼容，不像异或那样会抵消
+            twos |= ones & t;//two在one之前是因为，如果先一次，那么两次永远成功
+            ones ^= t;//出现一次的采用异或，只要第二次出现ones里的它就会被抵消
+            threes = ones & twos; //二已经有了，现在又来一，所以本身给了threes
+            ones &= ~threes;//~ 抵消掉ones+twos变成threes的那个数，不是我们要的
+            twos &= ~threes;
+        }
+        return ones;
+```
