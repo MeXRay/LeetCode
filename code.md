@@ -156,3 +156,6 @@ public boolean wordBreak(String s, Set<String> dict) {
         }
         return ones;
 ```
+> 总结：ones最简单^=出现一次吸收，第二次抵消    twos需要把在ones中出现过的第二次出现的时候加到twos里，所以用了&保留重复第二次的数，|加入到twos
+threes则是把同时出现在ones和twos里的那个数加到threes，所以ones&twos，与此同时把这个数在ones和twos给踢掉，因为我们要的是只出现一次，他不能在ones
+里，也不能“不正确”地赖在twos里，不然影响后面判断，所以& ~
