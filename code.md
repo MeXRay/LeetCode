@@ -135,7 +135,7 @@ public boolean wordBreak(String s, Set<String> dict) {
     }
  ```
 # 5.single-number-ii
-最多出现3次，找出只出现一次的  一道位运算的极致的题
+最多出现3次，找出只出现一次的  一道位运算的极致的题   花了我一小时理解..
 ```java
   //异或一个人解决不了，叫上了与、或帮忙
       //思路说是模拟计数3进位，但在我看来是用ones,twos,threes来吸收符合条件的数
