@@ -1,4 +1,4 @@
-- [1.minimum-depth-of-binary-tree](#1.minimumdepthofbinarytree)
+- [1.minimum-depth-of-binary-tree](#1minimumdepthofbinarytree)
 - [2.binary-tree-postorder-traversal](#2.binary-tree-postorder-traversal)
 - [3.reorder-list](#3.reorder-list)
 - [4.word-break](#4.word-break)
