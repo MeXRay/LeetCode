@@ -3,7 +3,7 @@
 - [3.reorder-list](#3reorder-list)
 - [4.word-break](#4word-break)
 - [5.single-number-ii](#5single-number-ii)
-- [1.minimum-depth-of-binary-tree](#1minimum-depth-of-binary-tree)
+- [6.candy](#6candy)
 - [1.minimum-depth-of-binary-tree](#1minimum-depth-of-binary-tree)
 
 # 1.minimum-depth-of-binary-tree
@@ -159,3 +159,37 @@ public boolean wordBreak(String s, Set<String> dict) {
 > 总结：ones最简单^=出现一次吸收，第二次抵消    twos需要把在ones中出现过的第二次出现的时候加到twos里，所以用了&保留重复第二次的数，|加入到twos
 threes则是把同时出现在ones和twos里的那个数加到threes，所以ones&twos，与此同时把这个数在ones和twos给踢掉，因为我们要的是只出现一次，他不能在ones
 里，也不能“不正确”地赖在twos里，不然影响后面判断，所以& ~
+
+# 5.candy
+题目要求：根据孩子得分，分配糖果，每人至少1颗，高分要比左右孩子多1颗，求最少给的糖果数量
+> 我的24行代码思路：每人先给一颗，从左往右除了第一个和右比之外，其他都和左比，确保自己分高时要比左边多一颗糖果；
+因为5,3,1的情况发现只和左边比较会漏掉比右边大但没有，比右边的糖果+1的情况；不适合从左往右再次比较，因为和右比的话肯定是自己多或等于因为之前的分配策略
+；所以我就从右往左，如果自己比前一个小，就得让前一个比自己多（注意不能是盲目的自己糖果+1赋值，因为他可能本来就比你高）
+```java
+24行 时间复杂度4n,空间多了1个数组   上榜第一的解法
+ public int candy(int[] ratings) {
+        int len = ratings.length;
+        if(len <= 1) return 1;
+        int[] candys=new int[len];
+        //至少给一颗
+        for(int i=0;i<len;i++) candys[i]=1;
+        for(int j=0;j<len;j++){//从左往右，每次和当前和左比较
+            if(j == 0 ){//第一个和右比较
+                if(ratings[j]>ratings[j+1]) candys[j] = candys[j+1]+1;
+            }else{//当前大于左边，当前加
+                if(ratings[j]>ratings[j-1]) candys[j]=candys[j-1]+1;
+            }
+        }
+         for(int j=len-1;j>=1;j--){//从右往左，还是和左比较 比到第二个
+            //不同在 这次是当前小于左边，得在糖果数不符合时才让左边加
+                if(ratings[j]<ratings[j-1] && candys[j] >= candys[j-1]) //>=
+                    candys[j-1]=candys[j]+1;
+            }
+        
+        int res = 0;
+        for(int k=0;k<len;k++){
+            res+=candys[k];
+        }
+        return res;
+    }
+```
